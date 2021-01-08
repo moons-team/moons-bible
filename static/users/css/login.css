@@ -1,0 +1,191 @@
+.login{
+    width: 700px;
+    height: 500px;
+    margin: 250px auto;
+    border-radius: 50px 20px 20px 50px;
+    background-color: white;
+    display: block;
+}
+
+.login .left{
+    padding: 0;
+    width: 250px;
+    height: 500px;
+    background: linear-gradient(to right, #4C6873, #243340);
+    border-radius: 20px 0px 0px 20px;
+    float: left;
+}
+
+.login .left .left_logo{
+    width: 80px;
+    margin: 20px auto 0px auto;
+}
+
+.login .left .left_logo img{
+    width: 80px;
+}
+
+.login .left .left_title{
+    width: 150px;
+    margin: 10px auto 20px auto;
+}
+
+.login .left .left_title img{
+    width: 150px;
+}
+
+.login .left .left_sub_title{
+    width: 200px;
+    height: 300px;
+    margin: 10px auto;
+    color: white;
+    font-size: 12px;
+}
+
+.login .left .left_sub_title p{
+    font-size: 15px;
+}
+
+.login .left .left_button{
+    width: 150px;
+    height: 30px;
+    margin: 0px auto 0px auto;
+    border: 2px solid white;
+    border-radius: 34px;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.login .left .left_button:hover{
+    background-color: white;
+    color: black;
+}
+
+
+.login .right{
+    padding: 0;
+    width: 450px;
+    height: 475px;
+    background-color: white;
+    border-radius: 0px 20px 20px 0px;
+    margin-left: 250px;
+    padding-top: 25px;
+}
+
+.login .right .title{
+    width: 200px;
+    height: 10px;
+    margin: 0px auto 0px auto;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    padding-top: 0px;
+}
+
+.login .x{
+    margin: 0px;
+    width: 21px;
+    height: 21px;
+    position: relative;
+    bottom: 10px;
+    left: 408px;
+    z-index: 200;
+}
+
+.login .x img{
+    width: 20px;
+    margin-top: 0px;
+    cursor: pointer;
+}
+
+.login .right .sub_title{
+    width: 300px;
+    height: 30px;
+    margin: 0px auto 0px auto;
+    text-align: center;
+    font-size: 15px;
+    padding-top: 30px;
+    color: gray;
+}
+
+.login .right .form{
+    width: 300px;
+    height: 330px;
+    margin: 20px auto 0px auto;
+    font-size: 13px;
+}
+
+.login .right .form input{
+    width: 290px;
+    height: 45px;
+    border-radius: 10px;
+    border: 0px;
+    background-color: #e8f0fe;
+    outline: none;
+    font-size: 16px;
+    margin-top: 10px;
+    padding-left: 10px;
+    color: rgb(59, 59, 59);
+}
+
+.login .right .form .submit{
+    width: 100%;
+    height: 45px;
+    border-radius: 10px;
+    border: 0px;
+    background-color: #e8f0fe;
+    outline: none;
+    font-size: 18px;
+    margin-top: 15px;
+    color: white;
+    background: linear-gradient(to right, #4C6873, #243340);
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.login .right .form span{
+    margin-bottom: 20px;
+}
+
+.login .right .form .label{
+    width: 70px;
+    margin-top: 15px;
+    line-height: 25px;
+    float: left;
+}
+
+#remember{
+    width: 13px;
+    height: 13px;
+    margin-top: 20px;
+}
+
+
+.login .right .form .signup_link{
+    width: 53px;
+    height: 15px;
+    border-right: 1px solid rgb(163, 163, 163);
+    float: left;
+    margin-right: 10px;
+    margin-left: 28%;
+    cursor: pointer;
+}
+
+.login .right .form .signup_link a{
+    color: #8c6e54;
+}
+
+.login .right .form .rigth_buttom{
+    width: 300px;
+}
+
+.login .right .form .error{
+    width: 100%;
+    height: 10px;
+    text-align: center;
+    color: red;
+    margin-top: 10px;
+}

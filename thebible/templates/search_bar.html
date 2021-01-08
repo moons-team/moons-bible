@@ -1,0 +1,19 @@
+{% load static %}
+{% load search %}
+<div class="search_version" id="search_version">
+    <div class="span" id="box">개역한글</div>
+    <div class="select-list" id="down">
+        {% for version in version_list %}
+            <div class="select">{{ version.1 }}</div>
+        {% endfor %}
+    </div>
+    <img src="{% static 'thebible/img/sub/select.png' %}"  class="select_img">
+</div>
+<div class="search_div">
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ read_search_input.keyword }}
+        <input class="search_button" type="submit" value="">
+        <div class="img"><img src="{% static 'thebible/img/icon/search_icon.png' %}"></div>
+    </form>
+</div>

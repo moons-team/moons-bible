@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moons bible</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'thebible/css/base.css' %}">
+    {% block head %}
+    {% endblock head %}
+</head>
+
+<body>
+<div class="window_background" id="window_background"></div>
+{% block users %}
+{% endblock users %}
+
+<div class="body">
+    <div class="left_menu_bgcolor">
+        <div class="left_menu">
+            <div class="logo">
+                <img src="{% static 'thebible/img/logo.png' %}">
+            </div>
+            <div class="title">
+                <img src="{% static 'thebible/img/title.png' %}">
+            </div>
+            <div class="sub_title">
+                성경을 세밀하게 분석하여 정확하게 읽어요!
+            </div>
+            <ul class="menus" id="menus">
+                <a href="{% url 'bible:home' %}">
+                    <li class="li">
+                        <div class="img">
+                            <img src="{% static 'thebible/img/icon/home_icon.png' %}">
+                        </div>
+                        <div class="span">
+                            <span>홈</span>
+                        </div>
+                    </li>
+                </a>
+                <a href="{% url 'bible:read' %}">
+                    <li class="li">
+                        <div class="img">
+                            <img src="{% static 'thebible/img/icon/read_icon.png' %}">
+                        </div>
+                        <div class="span">
+                            <span>성경읽기</span>
+                        </div>
+                    </li>
+                </a>
+            </ul>
+            {% if user.is_authenticated %}
+                <a href="{% url 'user:logout' %}?next_path={{ request.get_full_path }}"><div class="login_button">로그아웃</div></a>
+            {% else %}
+                <a href="{% url 'user:login' %}?next_path={{ request.path }}"><div class="login_button">로그인</div></a>
+                <a href="{% url 'user:signup' %}?next_path={{ request.path }}"><div class="signup_button">회원가입</div></a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="right_content">
+        {% block content %}
+        <!-- 오른쪽 내용 부분 -->
+        {% endblock content %}
+    </div>
+</div>
+{% block js %}{% endblock js %}
+<script src="{% static 'thebible/js/base.js' %}"></script>
+<script src="{% static 'thebible/js/search_bar.js' %}"></script>
+</body>
+</html>

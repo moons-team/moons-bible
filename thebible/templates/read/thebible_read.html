@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'thebible/css/read/thebible_read.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'thebible/css/search_bar.css' %}">
+{% endblock head %}
+
+{% block content %}
+<!-- 위부분 -->
+<div class="top">
+    <!-- 제목필터 -->
+    <div class="top_list title"> 
+        <div class="span" onclick="select(0)">{{ version_one_title }}</div>
+        <div class="select-list">
+            {% for title in title_list %}
+                <a href="{{ para_list.0.0 }}{{ para_list.0.1 }}{{ para_list.1.0 }}{{ para_list.1.1 }}{{ para_list.2.0 }}{{ title.title_num }}{{ para_list.3.0 }}1"><div class="select">{{ title }}</div></a>
+            {% endfor %}
+        </div>
+        <img src="{% static 'thebible/img/sub/select_black.png' %}" class="select_img">
+    </div>
+    <!-- 장 필터 -->
+    <div class="top_list chapter">
+        <div class="span" onclick="select(1)">{{ para_list.3.1 }}</div>
+        <div class="select-list">
+            {% for chapter in chapter_list %}
+                <a href="{{ para_list.0.0 }}{{ para_list.0.1 }}{{ para_list.1.0 }}{{ para_list.1.1 }}{{ para_list.2.0 }}{{ para_list.2.1 }}{{ para_list.3.0 }}{{ chapter.chapter_num }}"><div class="select">{{ chapter.chapter_num }}</div></a>
+            {% endfor %}
+        </div>
+        <img src="{% static 'thebible/img/sub/select_black.png' %}" class="select_img">
+    </div>
+    <!-- 버전1필터 -->
+    <div class="top_list version_one">
+        <div class="span" onclick="select(2)">{{ version_one }}</div>
+        <div class="select-list">
+            {% for version in version_list %}
+                <a href="{{ para_list.0.0 }}{{ version.0 }}{{ para_list.1.0 }}{{ para_list.1.1 }}{{ para_list.2.0 }}{{ para_list.2.1 }}{{ para_list.3.0 }}{{ para_list.3.1 }}"><div class="select">{{ version.1 }}</div></a>
+            {% endfor %}
+        </div>
+        <img src="{% static 'thebible/img/sub/select_black.png' %}" class="select_img">
+    </div>
+    <!-- 버전2필터 -->
+    <div class="top_list version_two">
+        <div class="span" onclick="select(3)">{{ version_two }}</div>
+        <div class="select-list">
+            {% for version in version_list %}
+                <a href="{{ para_list.0.0 }}{{ para_list.0.1 }}{{ para_list.1.0 }}{{ version.0 }}{{ para_list.2.0 }}{{ para_list.2.1 }}{{ para_list.3.0 }}{{ para_list.3.1 }}"><div class="select">{{ version.1 }}</div></a>
+            {% endfor %}
+        </div>
+        <img src="{% static 'thebible/img/sub/select_black.png' %}" class="select_img">
+    </div>
+    <div class="search_bar">{% include 'search_bar.html' %}</div>
+</div>
+<!-- 내용 -->
+<div class="content">
+    <!-- 왼쪽 내용 -->
+    <div class="left">
+        <h1>{{ version_one_title }} {{ para_list.3.1 }}{{ version_one_language_title }}</h1>
+        {% for content in version_one_title_chapter_content %}
+        <p>
+            <span>{{ content.verse_num }}</span>
+            <div class="text" onclick="like(this)" name="{{ content.id }}">{{ content.verse }}</div>
+        </p>
+        {% endfor %}
+    </div>
+    <!-- 오른쪽 내용 -->
+    <div class="right">
+        <h1>{{ version_two_title }} {{ para_list.3.1 }}{{ version_two_language_title }}</h1>
+        {% for content in version_two_title_chapter_content %}
+        <p>
+            <span>{{ content.verse_num }}</span>
+            <div class="text" onclick="like(this)" name="{{ content.id }}">{{ content.verse }}</div>
+        </p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'thebible/js/read/thebible_read.js' %}"></script>
+{% endblock js %}
