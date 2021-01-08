@@ -12,7 +12,7 @@
     <!-- 제목필터 -->
     <div class="top_list title"> 
         <div class="span" onclick="select(0)">{{ version_one_title }}</div>
-        <div class="select-list">
+        <div class="select-list none">
             {% for title in title_list %}
                 <a href="{{ para_list.0.0 }}{{ para_list.0.1 }}{{ para_list.1.0 }}{{ para_list.1.1 }}{{ para_list.2.0 }}{{ title.title_num }}{{ para_list.3.0 }}1"><div class="select">{{ title }}</div></a>
             {% endfor %}
@@ -22,7 +22,7 @@
     <!-- 장 필터 -->
     <div class="top_list chapter">
         <div class="span" onclick="select(1)">{{ para_list.3.1 }}</div>
-        <div class="select-list">
+        <div class="select-list none">
             {% for chapter in chapter_list %}
                 <a href="{{ para_list.0.0 }}{{ para_list.0.1 }}{{ para_list.1.0 }}{{ para_list.1.1 }}{{ para_list.2.0 }}{{ para_list.2.1 }}{{ para_list.3.0 }}{{ chapter.chapter_num }}"><div class="select">{{ chapter.chapter_num }}</div></a>
             {% endfor %}
@@ -32,7 +32,7 @@
     <!-- 버전1필터 -->
     <div class="top_list version_one">
         <div class="span" onclick="select(2)">{{ version_one }}</div>
-        <div class="select-list">
+        <div class="select-list none">
             {% for version in version_list %}
                 <a href="{{ para_list.0.0 }}{{ version.0 }}{{ para_list.1.0 }}{{ para_list.1.1 }}{{ para_list.2.0 }}{{ para_list.2.1 }}{{ para_list.3.0 }}{{ para_list.3.1 }}"><div class="select">{{ version.1 }}</div></a>
             {% endfor %}
@@ -42,7 +42,7 @@
     <!-- 버전2필터 -->
     <div class="top_list version_two">
         <div class="span" onclick="select(3)">{{ version_two }}</div>
-        <div class="select-list">
+        <div class="select-list none">
             {% for version in version_list %}
                 <a href="{{ para_list.0.0 }}{{ para_list.0.1 }}{{ para_list.1.0 }}{{ version.0 }}{{ para_list.2.0 }}{{ para_list.2.1 }}{{ para_list.3.0 }}{{ para_list.3.1 }}"><div class="select">{{ version.1 }}</div></a>
             {% endfor %}

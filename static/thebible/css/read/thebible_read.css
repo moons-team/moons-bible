@@ -49,7 +49,6 @@
     top: 60px;
     width: 180px;
     left: 60px;
-    display: none;
 }
 
 .top .chapter .select-list{
@@ -68,7 +67,6 @@
     top: 60px;
     width: 110px;
     left: 260px;
-    display: none;
 }
 
 .top .version_one .select-list{
@@ -87,7 +85,6 @@
     top: 60px;
     width: 120px;
     left: 490px;
-    display: none;
 }
 
 .top .version_two .select-list{
@@ -106,7 +103,6 @@
     top: 60px;
     width: 120px;
     left: 630px;
-    display: none;
 }
 
 .top .select{

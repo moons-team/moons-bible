@@ -2,12 +2,13 @@
 function select(num) {
     var selectList = document.getElementsByClassName("select-list")[num];
     var img = document.getElementsByClassName("select_img")[num];
-    if (selectList.style.display === "none") {
-        selectList.style.display = "block";
-        img.style.transform = "rotate(180deg)";
-    } else {
-        selectList.style.display = "none";
-        img.style.transform = "rotate(0deg)";
+    if (selectList.classList.contains('none')) {
+        selectList.classList.remove('none');
+        img.classList.add('rorate180');
+    }
+    else {
+        selectList.classList.add('none');
+        img.classList.remove('rorate180');
         }
     }
 

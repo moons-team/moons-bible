@@ -1,7 +1,7 @@
 // 메뉴
 var lis = document.getElementById("menus").getElementsByTagName("li")
 var pathname = window.location.pathname;
-if(pathname == "/thebible/home/"){
+if(pathname == "/thebible/"){
     lis[0].className = "li_selcet";
 }
 else if(pathname == "/thebible/read/"){
