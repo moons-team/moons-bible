@@ -18,9 +18,12 @@ window.onclick=function(e){
         var dropdown = document.getElementsByClassName("select-list");
         var img = document.getElementsByClassName("select_img");
         for(i = 0, len = dropdown.length; i < len; i++){
-            if (dropdown[i].style.display = "block") {
-            dropdown[i].style.display = "none";
-            img[i].style.transform = "rotate(0deg)";
+            if (dropdown[i].classList.contains('none')) {
+                
+                }
+            else {
+                dropdown[i].classList.add('none');
+                img[i].classList.remove('rorate180');
                 }
             }
         }
