@@ -11,43 +11,51 @@
 <div class="top">
     <!-- 제목필터 -->
     <div class="top_list title"> 
-        <div class="span" onclick="select(0)">{{ version_one_title }}</div>
+        <div id="fil-click" class="span" onclick="select(0)">
+            <div id="fil-click">{{ version_one_title }}</div>
+            <img src="{% static 'thebible/img/sub/select_black.png' %}" class="select_img" id="fil-click">
+        </div>
         <div class="select-list none">
             {% for title in title_list %}
                 <a href="{{ para_list.0.0 }}{{ para_list.0.1 }}{{ para_list.1.0 }}{{ para_list.1.1 }}{{ para_list.2.0 }}{{ title.title_num }}{{ para_list.3.0 }}1"><div class="select">{{ title }}</div></a>
             {% endfor %}
         </div>
-        <img src="{% static 'thebible/img/sub/select_black.png' %}" class="select_img">
     </div>
     <!-- 장 필터 -->
     <div class="top_list chapter">
-        <div class="span" onclick="select(1)">{{ para_list.3.1 }}</div>
+        <div id="fil-click" class="span" onclick="select(1)">
+            <div id="fil-click">{{ para_list.3.1 }}</div>
+            <img src="{% static 'thebible/img/sub/select_black.png' %}" class="select_img" id="fil-click">
+        </div>
         <div class="select-list none">
             {% for chapter in chapter_list %}
                 <a href="{{ para_list.0.0 }}{{ para_list.0.1 }}{{ para_list.1.0 }}{{ para_list.1.1 }}{{ para_list.2.0 }}{{ para_list.2.1 }}{{ para_list.3.0 }}{{ chapter.chapter_num }}"><div class="select">{{ chapter.chapter_num }}</div></a>
             {% endfor %}
         </div>
-        <img src="{% static 'thebible/img/sub/select_black.png' %}" class="select_img">
     </div>
     <!-- 버전1필터 -->
     <div class="top_list version_one">
-        <div class="span" onclick="select(2)">{{ version_one }}</div>
+        <div id="fil-click" class="span" onclick="select(2)">
+            <div id="fil-click">{{ version_one }}</div>
+            <img src="{% static 'thebible/img/sub/select_black.png' %}" class="select_img" id="fil-click">
+        </div>
         <div class="select-list none">
             {% for version in version_list %}
                 <a href="{{ para_list.0.0 }}{{ version.0 }}{{ para_list.1.0 }}{{ para_list.1.1 }}{{ para_list.2.0 }}{{ para_list.2.1 }}{{ para_list.3.0 }}{{ para_list.3.1 }}"><div class="select">{{ version.1 }}</div></a>
             {% endfor %}
         </div>
-        <img src="{% static 'thebible/img/sub/select_black.png' %}" class="select_img">
     </div>
     <!-- 버전2필터 -->
     <div class="top_list version_two">
-        <div class="span" onclick="select(3)">{{ version_two }}</div>
+        <div id="fil-click" class="span" onclick="select(3)">
+            <div id="fil-click">{{ version_two }}</div>
+            <img src="{% static 'thebible/img/sub/select_black.png' %}" class="select_img" id="fil-click">
+        </div>
         <div class="select-list none">
             {% for version in version_list %}
                 <a href="{{ para_list.0.0 }}{{ para_list.0.1 }}{{ para_list.1.0 }}{{ version.0 }}{{ para_list.2.0 }}{{ para_list.2.1 }}{{ para_list.3.0 }}{{ para_list.3.1 }}"><div class="select">{{ version.1 }}</div></a>
             {% endfor %}
         </div>
-        <img src="{% static 'thebible/img/sub/select_black.png' %}" class="select_img">
     </div>
     <div class="search_bar">{% include 'search_bar.html' %}</div>
 </div>
@@ -59,7 +67,7 @@
         {% for content in version_one_title_chapter_content %}
         <p>
             <span>{{ content.verse_num }}</span>
-            <div class="text" onclick="like(this)" name="{{ content.id }}">{{ content.verse }}</div>
+            <div class="text{% if content.id in like_verse_id_list %} like-text{% endif %}" onclick="like(this, '{{ csrf_token }}')" name="{{ content.id }}">{{ content.verse }}</div>
         </p>
         {% endfor %}
     </div>
@@ -69,7 +77,7 @@
         {% for content in version_two_title_chapter_content %}
         <p>
             <span>{{ content.verse_num }}</span>
-            <div class="text" onclick="like(this)" name="{{ content.id }}">{{ content.verse }}</div>
+            <div class="text{% if content.id in like_verse_id_list %} like-text{% endif %}" onclick="like(this, '{{ csrf_token }}')" name="{{ content.id }}">{{ content.verse }}</div>
         </p>
         {% endfor %}
     </div>
@@ -77,5 +85,6 @@
 {% endblock content %}
 
 {% block js %}
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
     <script type="text/javascript" src="{% static 'thebible/js/read/thebible_read.js' %}"></script>
 {% endblock js %}

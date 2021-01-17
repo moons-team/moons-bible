@@ -36,9 +36,9 @@ class UserProfile(models.Model):
 # 유저가 좋아하는 성구
 class UserLikeVerses(models.Model):
     # 유저
-    user_key = models.ForeignKey(User_db, on_delete=models.PROTECT)
+    user = models.ForeignKey(User_db, on_delete=models.DO_NOTHING)
     # 성구
-    verse_key = models.ForeignKey(BibleVerses, on_delete=models.PROTECT)
+    verse = models.ForeignKey(BibleVerses, on_delete=models.DO_NOTHING)
     # 저장시간
     save_time = models.DateTimeField(auto_now_add=True, verbose_name="저장 시간")
 

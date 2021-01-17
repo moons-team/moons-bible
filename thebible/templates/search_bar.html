@@ -1,16 +1,18 @@
 {% load static %}
 {% load search %}
-<div class="search_version" id="search_version">
-    <div class="span" id="box">개역한글</div>
-    <div class="select-list" id="down">
+<div class="search_version">
+    <div id="fil-click" class="span" onclick="select(4)">
+        <div id="fil-click" name="version_name" class="search_version_title">개역한글</div>
+        <img src="{% static 'thebible/img/sub/select.png' %}" class="select_img" id="fil-click">
+    </div>
+    <div class="select-list none">
         {% for version in version_list %}
-            <div class="select">{{ version.1 }}</div>
+            <div class="select" onclick="search_version(this)">{{ version.1 }}</div>
         {% endfor %}
     </div>
-    <img src="{% static 'thebible/img/sub/select.png' %}"  class="select_img">
 </div>
 <div class="search_div">
-    <form action="" method="POST">
+    <form action="{% url 'bible:read' %}" method="POST">
         {% csrf_token %}
         {{ read_search_input.keyword }}
         <input class="search_button" type="submit" value="">
