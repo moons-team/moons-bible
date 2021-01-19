@@ -92,7 +92,7 @@ class BibleVerses(models.Model):
     # 성경 절 넘버
     verse_num = models.IntegerField(blank=True, null=True, verbose_name="절")
     # 성경 절 내용
-    verse = models.TextField(blank=True, null=True, verbose_name="내용")
+    verse = models.TextField(blank=True, null=True, verbose_name="내용" ,db_index=True)
     # 누적 복사 수
     all_copy_count = models.IntegerField(default=0, verbose_name="누적 복사 회수")
     # 현재 좋아요 수

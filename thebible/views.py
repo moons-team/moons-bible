@@ -5,6 +5,7 @@ from thebible.forms import read_search_form
 
 from thebible.models import *
 from users.models import *
+from thebible.sub_views import *
 
 # Create your views here.
 # 성경 홈 페이지
@@ -94,10 +95,20 @@ class thebible_read(TemplateView):
         context["version_two_title_chapter_content"] = version_two_title_chapter_content # 버전2의 내용
         context["version_one_language_title"] = version_one_language_title # 버전1의 장
         context["version_two_language_title"] = version_two_language_title # 버전2의 장
+        
+        return context
+
+# 검색 뷰
+class SearchReadView(thebible_read):
+    template_name = 'read/thebible_read.html'
+    def get_context_data(self, **kwargs):
+        context = super(SearchReadView, self).get_context_data(**kwargs)
+
+        keyword = self.request.GET.get("keyword", "하나님") # 검색키워드
+        search_version = self.request.GET.get("search_version", "개역한글") # 검색 버전
+        # 검색 펑션 호출
+        search_result = ReadSearch(search_version, keyword)
+        # 검색 결과
+        context['search_result'] = search_result
         return context
     
-    def post(self, request, **kwargs): # 검색 페이지
-        context = super(thebible_read, self).get_context_data(**kwargs)
-        print(context)
-
-        return render(request, "read/thebible_read.html", context)

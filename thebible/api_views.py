@@ -3,6 +3,7 @@ from django.views.generic.base import View
 from users.models import *
 from thebible.models import *
 
+# 유저가 좋아하는 성구 api
 class like_verse_api(View):
     def post(self, request, **kwargs):
         is_active = request.POST.get('is_active')
@@ -38,4 +39,3 @@ class like_verse_api(View):
                 return HttpResponse(0) # 제거 되었습니다
         else: # 로그인 안되어 있을 경우
             return HttpResponse(2)
-
