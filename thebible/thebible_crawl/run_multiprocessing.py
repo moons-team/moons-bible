@@ -28,11 +28,11 @@ def start_multiprocessing(version_list):
 
 
 version_list = [
-    # {"language": "0", "name": "0", "value": "B_GAE"},
-    # {"language": "0", "name": "1", "value": "B_RHV"},
-    # {"language": "0", "name": "2", "value": "B_COGNEW"},
-    # {"language": "0", "name": "3", "value": "B_SAENEW"},
-    # {"language": "0", "name": "4", "value": "B_HDB"},
+    {"language": "0", "name": "0", "value": "B_GAE"},
+    {"language": "0", "name": "1", "value": "B_RHV"},
+    {"language": "0", "name": "2", "value": "B_COGNEW"},
+    {"language": "0", "name": "3", "value": "B_SAENEW"},
+    {"language": "0", "name": "4", "value": "B_HDB"},
     {"language": "1", "name": "5", "value": "BIBLE_cgb"},
     {"language": "1", "name": "6", "value": "BIBLE_cb5"},
     # {"language": "2", "name": "7", "value": "B_NIV"},

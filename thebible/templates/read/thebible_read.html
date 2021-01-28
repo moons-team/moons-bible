@@ -17,19 +17,19 @@
         </div>
         <div class="select-list none">
             {% for title in title_list %}
-                <a href="{{ para_list.0.0 }}{{ para_list.0.1 }}{{ para_list.1.0 }}{{ para_list.1.1 }}{{ para_list.2.0 }}{{ title.title_num }}{{ para_list.3.0 }}1"><div class="select">{{ title }}</div></a>
+                <a href="?vs_one={{ para_list.vs_one }}&vs_two={{ para_list.vs_two }}&title={{ title.title_num }}&chapter=1"><div class="select">{{ title }}</div></a>
             {% endfor %}
         </div>
     </div>
     <!-- 장 필터 -->
     <div class="top_list chapter">
         <div id="fil-click" class="span" onclick="select(1)">
-            <div id="fil-click">{{ para_list.3.1 }}</div>
+            <div id="fil-click">{{ para_list.chapter }}</div>
             <img src="{% static 'thebible/img/sub/select_black.png' %}" class="select_img" id="fil-click">
         </div>
         <div class="select-list none">
             {% for chapter in chapter_list %}
-                <a href="{{ para_list.0.0 }}{{ para_list.0.1 }}{{ para_list.1.0 }}{{ para_list.1.1 }}{{ para_list.2.0 }}{{ para_list.2.1 }}{{ para_list.3.0 }}{{ chapter.chapter_num }}"><div class="select">{{ chapter.chapter_num }}</div></a>
+                <a href="?vs_one={{ para_list.vs_one }}&vs_two={{ para_list.vs_two }}&title={{ para_list.title }}&chapter={{ chapter.chapter_num }}"><div class="select">{{ chapter.chapter_num }}</div></a>
             {% endfor %}
         </div>
     </div>
@@ -41,7 +41,7 @@
         </div>
         <div class="select-list none">
             {% for version in version_list %}
-                <a href="{{ para_list.0.0 }}{{ version.0 }}{{ para_list.1.0 }}{{ para_list.1.1 }}{{ para_list.2.0 }}{{ para_list.2.1 }}{{ para_list.3.0 }}{{ para_list.3.1 }}"><div class="select">{{ version.1 }}</div></a>
+                <a href="?vs_one={{ version.0 }}&vs_two={{ para_list.vs_two }}&title={{ para_list.title }}&chapter={{ para_list.chapter }}"><div class="select">{{ version.1 }}</div></a>
             {% endfor %}
         </div>
     </div>
@@ -53,7 +53,7 @@
         </div>
         <div class="select-list none">
             {% for version in version_list %}
-                <a href="{{ para_list.0.0 }}{{ para_list.0.1 }}{{ para_list.1.0 }}{{ version.0 }}{{ para_list.2.0 }}{{ para_list.2.1 }}{{ para_list.3.0 }}{{ para_list.3.1 }}"><div class="select">{{ version.1 }}</div></a>
+                <a href="?vs_one={{ para_list.vs_one }}&vs_two={{ version.0 }}&title={{ para_list.title }}&chapter={{ para_list.chapter }}"><div class="select">{{ version.1 }}</div></a>
             {% endfor %}
         </div>
     </div>
@@ -63,8 +63,8 @@
 <div class="content">
     <!-- 왼쪽 내용 -->
     <div class="left">
-        <h1>{{ version_one_title }} {{ para_list.3.1 }}{{ version_one_language_title }}</h1>
-        {% for content in version_one_title_chapter_content %}
+        <h1>{{ version_one_title }} {{ para_list.chapter }}{{ version_one_language_title }}</h1>
+        {% for content in version_one_content %}
         <p>
             <span>{{ content.verse_num }}</span>
             <div class="text{% if content.id in like_verse_id_list %} like-text{% endif %}" onclick="like(this, '{{ csrf_token }}')" name="{{ content.id }}">{{ content.verse }}</div>
@@ -73,8 +73,8 @@
     </div>
     <!-- 오른쪽 내용 -->
     <div class="right">
-        <h1>{{ version_two_title }} {{ para_list.3.1 }}{{ version_two_language_title }}</h1>
-        {% for content in version_two_title_chapter_content %}
+        <h1>{{ version_two_title }} {{ para_list.chapter }}{{ version_two_language_title }}</h1>
+        {% for content in version_two_content %}
         <p>
             <span>{{ content.verse_num }}</span>
             <div class="text{% if content.id in like_verse_id_list %} like-text{% endif %}" onclick="like(this, '{{ csrf_token }}')" name="{{ content.id }}">{{ content.verse }}</div>

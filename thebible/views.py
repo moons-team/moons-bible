@@ -23,56 +23,49 @@ class thebible_read(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = {}
+        para_list = {}
+
+        # 버전 1
+        para_list['vs_one'] = int(self.request.GET.get('vs_one', 1))
+        # 버전 2
+        para_list['vs_two'] = int(self.request.GET.get('vs_two', 5))
+        # 제목
+        para_list['title'] = int(self.request.GET.get('title', 1))
+        # 장
+        para_list['chapter'] = int(self.request.GET.get('chapter', 1))
+        context["para_list"] = para_list # 파라메터 리스트
 
         read_search_input = read_search_form()
         context["read_search_input"] = read_search_input # 검색 폼
-        para_list = [['?vs_one=', ''],['&vs_two=', ''],['&title=', ''],['&chapter=', '']]
-        
-        # 버전 1
-        vs_one_filter = self.request.GET.get('vs_one', 1)
-        para_list[0][1] = vs_one_filter
-        # 버전 2
-        vs_two_filter = self.request.GET.get('vs_two', 5)
-        para_list[1][1] = vs_two_filter
-        # 제목
-        title_filter = self.request.GET.get('title', 1)
-        para_list[2][1] = title_filter
-        # 장
-        chapter_filter = self.request.GET.get('chapter', 1)
-        para_list[3][1] = chapter_filter
 
-        # 버전 1
-        version_one = BibleVersions.objects.get(version=para_list[0][1])
-        # 버전 1 제목
-        version_one_title = version_one.bibletitles_set.all().get(title_num=para_list[2][1])
-        # 버전 1 제목 장
-        version_one_title_chapter = version_one_title.biblechapters_set.get(chapter_num=para_list[3][1])
-        # 버전 1 제목 장 내용
-        version_one_title_chapter_content = version_one_title_chapter.bibleverses_set.all()
-        # 버전 2
-        version_two = BibleVersions.objects.get(version=para_list[1][1])
-        # 버전 2 제목
-        version_two_title = version_two.bibletitles_set.get(title_num=para_list[2][1])
-        # 버전 2 제목 장
-        version_two_title_chapter = version_two_title.biblechapters_set.get(chapter_num=para_list[3][1])
-        # 버전 2 제목 장 내용
-        version_two_title_chapter_content = version_two_title_chapter.bibleverses_set.all()
+        version_one_content = BibleVerses.objects.filter(BibleChapter__BibleTitle__BibleVersion__version=para_list['vs_one'], BibleChapter__BibleTitle__title_num=para_list['title'], BibleChapter__chapter_num=para_list['chapter'])
+        version_two_content = BibleVerses.objects.filter(BibleChapter__BibleTitle__BibleVersion__version=para_list['vs_two'], BibleChapter__BibleTitle__title_num=para_list['title'], BibleChapter__chapter_num=para_list['chapter'])
+        context["version_one_content"] = version_one_content # 버전1의 내용
+        context["version_two_content"] = version_two_content # 버전2의 내용
 
-        # 버전 리스트
         version_list = BibleVersions.version_choice
-        # 제목 리스트
-        title_list = version_one.bibletitles_set.all()
-        # 장 리스트
-        chapter_list = version_one_title.biblechapters_set.all()
+        context["version_list"] = version_list # 필터 버전 리스트
+        title_list = BibleTitles.objects.filter(BibleVersion__version=para_list['vs_one'])
+        context["title_list"] = title_list # 필터 제목 리스트
+        chapter_list = BibleChapters.objects.filter(BibleTitle__BibleVersion__version=para_list['vs_one'], BibleTitle__title_num=para_list['title'])
+        context["chapter_list"] = chapter_list # 필터 장 리스트
 
+        context["version_one"] = version_list[para_list['vs_one']][1] # 버전1 이름
+        context["version_two"] = version_list[para_list['vs_two']][1]# 버전2 이름
+
+        context["version_one_title"] = BibleTitles.objects.get(title_num=para_list['title'], BibleVersion__version=para_list['vs_one']) # 버전1의 제목
+        context["version_two_title"] = BibleTitles.objects.get(title_num=para_list['title'], BibleVersion__version=para_list['vs_two']) # 버전2의 제목
+
+        # 중국어인지 한국어인지 분별
         version_one_language_title = '장'
         version_two_language_title = '장'
-        if para_list[0][1] == '5' or para_list[0][1] == '6':
+        if para_list['vs_one'] == 5 or para_list['vs_one'] == 6:
             version_one_language_title = '章'
-        if para_list[1][1] == '5' or para_list[1][1] == '6':
+        if para_list['vs_two'] == 5 or para_list['vs_two'] == 6:
             version_two_language_title = '章'
+        context["version_one_language_title"] = version_one_language_title # 버전1의 장
+        context["version_two_language_title"] = version_two_language_title # 버전2의 장
         
-        context["like_verse_id_list"] = []
         # 유저 좋아요
         current_user = self.request.user
         if current_user.is_authenticated:
@@ -82,19 +75,6 @@ class thebible_read(TemplateView):
                 for i in UserLikeVerse_list:
                     like_verse_id_list.append(i.verse.id)
             context["like_verse_id_list"] = like_verse_id_list
-        
-        context["version_one"] = version_one.get_version_display() # 버전1
-        context["version_two"] = version_two.get_version_display() # 버전2
-        context["version_list"] = version_list # 필터 버전 리스트
-        context["title_list"] = title_list # 필터 제목 리스트
-        context["chapter_list"] = chapter_list # 필터 장 리스트
-        context["para_list"] = para_list # 필터 파라메터 리스트
-        context["version_one_title"] = version_one_title # 버전1의 제목
-        context["version_two_title"] = version_two_title # 버전2의 제목
-        context["version_one_title_chapter_content"] = version_one_title_chapter_content # 버전1의 내용
-        context["version_two_title_chapter_content"] = version_two_title_chapter_content # 버전2의 내용
-        context["version_one_language_title"] = version_one_language_title # 버전1의 장
-        context["version_two_language_title"] = version_two_language_title # 버전2의 장
         
         return context
 
@@ -106,9 +86,11 @@ class SearchReadView(thebible_read):
 
         keyword = self.request.GET.get("keyword", "하나님") # 검색키워드
         search_version = self.request.GET.get("search_version", "개역한글") # 검색 버전
+
         # 검색 펑션 호출
         search_result = ReadSearch(search_version, keyword)
         # 검색 결과
         context['search_result'] = search_result
+
         return context
     

@@ -42,9 +42,9 @@ def analysis_bible_source(page_source, version, title_num, language, version_nam
             lis = ol.findAll("li")
             for li in lis:
                 try:
-                    content = re.findall(r"(.*?)\n", li.text)[0]
+                    content = re.findall(r"(.*?)\n", li.text)[0].replace("\t", "")
                 except:
-                    content = li.text
+                    content = li.text.replace("\t", "")
 
                 one_content = {
                     "language": language,
