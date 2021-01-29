@@ -19,6 +19,7 @@ class BibleVersions(models.Model):
         )
     version = models.IntegerField(choices=version_choice, default=0, verbose_name="성경버전")
     language = models.IntegerField(choices=language_choice, default=0, verbose_name="성경언어")
+    search_count = models.IntegerField(default=0, verbose_name="검색횟수")
     update_time = models.DateTimeField(auto_now=True, blank=True, null=True, verbose_name="업데이트 시간")
     
     class Meta:
@@ -27,8 +28,8 @@ class BibleVersions(models.Model):
         ordering = ['id']
         db_table = 'BibleVersions'
 
-    # def __str__(self):
-    #     return self.version.get_version_display()
+    def __str__(self):
+        return str(self.get_version_display())
 
 # 성경 제목 테이블
 class BibleTitles(models.Model):
@@ -38,6 +39,7 @@ class BibleTitles(models.Model):
     title_num = models.IntegerField(blank=True, null=True, verbose_name="제목넘버")
     title = models.CharField(max_length=30, blank=True, null=True, verbose_name="제목")
     title_type = models.IntegerField(choices=title_type_choice, default=0, verbose_name="타입")
+    search_count = models.IntegerField(default=0, verbose_name="검색횟수")
     update_time = models.DateTimeField(auto_now=True, blank=True, null=True, verbose_name="업데이트 시간")
 
     BibleVersion = models.ForeignKey(BibleVersions, on_delete=models.CASCADE)
@@ -45,7 +47,7 @@ class BibleTitles(models.Model):
     class Meta:
         verbose_name_plural = '성경 제목'
         verbose_name = '성경 제목'
-        ordering = ['id']
+        ordering = ['title']
         db_table = 'BibleTitles'
 
     def __str__(self):
@@ -54,6 +56,7 @@ class BibleTitles(models.Model):
 # 성경 장 테이블
 class BibleChapters(models.Model):
     chapter_num = models.IntegerField(blank=True, null=True, verbose_name="장")
+    search_count = models.IntegerField(default=0, verbose_name="검색횟수")
     update_time = models.DateTimeField(auto_now=True, blank=True, null=True, verbose_name="업데이트 시간")
 
     BibleTitle = models.ForeignKey(BibleTitles, on_delete=models.CASCADE)
@@ -64,8 +67,8 @@ class BibleChapters(models.Model):
         ordering = ['id']
         db_table = 'BibleChapters'
 
-    # def __str__(self):
-    #     return self.chapter_num
+    def __str__(self):
+        return str(self.chapter_num)
         
 # 성경 절 테이블
 class BibleVerses(models.Model):
@@ -86,3 +89,17 @@ class BibleVerses(models.Model):
 
     def __str__(self):
         return self.verse
+
+# 키워드 정보
+class KeywordsInfo(models.Model):
+    keyword = models.CharField(max_length=50, blank=True, null=True, verbose_name="키워드")
+    search_count = models.IntegerField(default=0, verbose_name="검색횟수")
+
+    class Meta:
+        verbose_name_plural = '키워드 정보'
+        verbose_name = '키워드 정보'
+        ordering = ['-search_count']
+        db_table = 'KeywordsInfo'
+
+    def __str__(self):
+        return self.keyword

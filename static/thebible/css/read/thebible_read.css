@@ -1,8 +1,16 @@
-.top{
+.sub_top{
     width: 94%;
     height: 40px;
-    box-shadow: rgb(218, 218, 218) 0px 2px 10px;
     padding: 15px 3%;
+}
+.top{
+    width: 79%;
+    height: 40px;
+    box-shadow: rgb(235, 235, 235) 5px 5px 5px, inset 16px -2px 5px -13px rgb(151, 151, 151);
+    padding: 15px 3%;
+    position: fixed;
+    background-color: white;
+    border-radius: 30px 0 0 0;
 }
 
 .top_list{

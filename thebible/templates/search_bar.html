@@ -11,7 +11,8 @@
     </div>
 </div>
 <div class="search_div">
-    <form action="{% url 'bible:read_search' %}" method="GET">
+    <form action="{% url 'bible:read_search' %}" method="POST">
+        {% csrf_token %}
         <input type="text" value="개역한글" name="search_version">
         {{ read_search_input.keyword }}
         <input class="search_button" type="submit" value="">

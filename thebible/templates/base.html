@@ -6,6 +6,7 @@
     <title>Moons bible</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'thebible/css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'thebible/css/alert/one_button_window.css' %}">
     {% block head %}
     {% endblock head %}
 </head>
@@ -14,6 +15,7 @@
 <div class="window_background" id="window_background"></div>
 {% block users %}
 {% endblock users %}
+{% include 'alert/one_button_window.html' %}
 
 <div class="body">
     <div class="left_menu_bgcolor">
@@ -28,8 +30,8 @@
                 
             </div>
             <ul class="menus" id="menus">
-                <a href="{% url 'bible:home' %}">
-                    <li class="li">
+                
+                    <li class="li" onclick="alert_on()">
                         <div class="img">
                             <img src="{% static 'thebible/img/icon/home_icon.png' %}">
                         </div>
@@ -37,17 +39,27 @@
                             <span>홈</span>
                         </div>
                     </li>
-                </a>
+                
                 <a href="{% url 'bible:read' %}">
                     <li class="li">
                         <div class="img">
                             <img src="{% static 'thebible/img/icon/read_icon.png' %}">
                         </div>
                         <div class="span">
-                            <span>성경읽기</span>
+                            <span>성경 읽기</span>
                         </div>
                     </li>
                 </a>
+
+                    <li class="li" onclick="alert_on()">
+                        <div class="img">
+                            <img src="{% static 'thebible/img/icon/read_icon.png' %}">
+                        </div>
+                        <div class="span">
+                            <span>성경 키워드 검색</span>
+                        </div>
+                    </li>
+                    
             </ul>
             {% if user.is_authenticated %}
                 <a href="{% url 'user:logout' %}?next_path={{ request.get_full_path }}"><div class="login_button">로그아웃</div></a>

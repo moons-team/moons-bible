@@ -7,58 +7,7 @@
 {% endblock head %}
 
 {% block content %}
-<!-- 위부분 -->
-<div class="top">
-    <!-- 제목필터 -->
-    <div class="top_list title"> 
-        <div id="fil-click" class="span" onclick="select(0)">
-            <div id="fil-click">{{ version_one_title }}</div>
-            <img src="{% static 'thebible/img/sub/select_black.png' %}" class="select_img" id="fil-click">
-        </div>
-        <div class="select-list none">
-            {% for title in title_list %}
-                <a href="?vs_one={{ para_list.vs_one }}&vs_two={{ para_list.vs_two }}&title={{ title.title_num }}&chapter=1"><div class="select">{{ title }}</div></a>
-            {% endfor %}
-        </div>
-    </div>
-    <!-- 장 필터 -->
-    <div class="top_list chapter">
-        <div id="fil-click" class="span" onclick="select(1)">
-            <div id="fil-click">{{ para_list.chapter }}</div>
-            <img src="{% static 'thebible/img/sub/select_black.png' %}" class="select_img" id="fil-click">
-        </div>
-        <div class="select-list none">
-            {% for chapter in chapter_list %}
-                <a href="?vs_one={{ para_list.vs_one }}&vs_two={{ para_list.vs_two }}&title={{ para_list.title }}&chapter={{ chapter.chapter_num }}"><div class="select">{{ chapter.chapter_num }}</div></a>
-            {% endfor %}
-        </div>
-    </div>
-    <!-- 버전1필터 -->
-    <div class="top_list version_one">
-        <div id="fil-click" class="span" onclick="select(2)">
-            <div id="fil-click">{{ version_one }}</div>
-            <img src="{% static 'thebible/img/sub/select_black.png' %}" class="select_img" id="fil-click">
-        </div>
-        <div class="select-list none">
-            {% for version in version_list %}
-                <a href="?vs_one={{ version.0 }}&vs_two={{ para_list.vs_two }}&title={{ para_list.title }}&chapter={{ para_list.chapter }}"><div class="select">{{ version.1 }}</div></a>
-            {% endfor %}
-        </div>
-    </div>
-    <!-- 버전2필터 -->
-    <div class="top_list version_two">
-        <div id="fil-click" class="span" onclick="select(3)">
-            <div id="fil-click">{{ version_two }}</div>
-            <img src="{% static 'thebible/img/sub/select_black.png' %}" class="select_img" id="fil-click">
-        </div>
-        <div class="select-list none">
-            {% for version in version_list %}
-                <a href="?vs_one={{ para_list.vs_one }}&vs_two={{ version.0 }}&title={{ para_list.title }}&chapter={{ para_list.chapter }}"><div class="select">{{ version.1 }}</div></a>
-            {% endfor %}
-        </div>
-    </div>
-    <div class="search_bar">{% include 'search_bar.html' %}</div>
-</div>
+{% include "top_menu_bar.html" %}
 <!-- 내용 -->
 <div class="content">
     <!-- 왼쪽 내용 -->

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'thebible/css/read/thebible_read.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'thebible/css/search_bar.css' %}">
+{% endblock head %}
+
+{% block content %}
+{% include "top_menu_bar.html" %}
+<h1>나는 메인</h1>
+{% endblock content %}
+
+{% block js %}
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <script type="text/javascript" src="{% static 'thebible/js/read/thebible_read.js' %}"></script>
+{% endblock js %}
