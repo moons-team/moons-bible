@@ -1,6 +1,6 @@
 from users.models import *
 from thebible.models import *
-import re
+from django.db.models import Q
 
 import langid # 언어식별 라이브러리
 
@@ -34,10 +34,21 @@ def ReadSearch(search_version, keyword):
             break
     
     # 키워드가 포함된 절
-    all_verse = BibleVerses.objects.filter(verse__icontains=keyword, BibleChapter__BibleTitle__BibleVersion__version=version_num).values("verse_num", "verse")
+    all_verse = BibleVerses.objects.filter(Q(verse__icontains=keyword)|Q(BibleChapter__BibleTitle__title__icontains=keyword), BibleChapter__BibleTitle__BibleVersion__version=version_num).values('BibleChapter__BibleTitle__title', "BibleChapter__chapter_num", "verse_num", "verse")
+    result_count = all_verse.count()
     version_db = BibleVersions.objects.get(version=version_num)
     version_db.search_count += 1
     version_db.save()
     keyword_search_count(keyword)
 
-    return all_verse
+    result = {}
+    for i in all_verse:
+        if i['BibleChapter__BibleTitle__title'] not in result:
+            result[i['BibleChapter__BibleTitle__title']] = {i['BibleChapter__chapter_num']: [{'verse_num': i['verse_num'], 'verse': i['verse']}]}
+        else:
+            if i['BibleChapter__chapter_num'] not in result[i['BibleChapter__BibleTitle__title']]:
+                result[i['BibleChapter__BibleTitle__title']][i['BibleChapter__chapter_num']] = [{'verse_num': i['verse_num'], 'verse': i['verse']}]
+            else:
+                result[i['BibleChapter__BibleTitle__title']][i['BibleChapter__chapter_num']].append({'verse_num': i['verse_num'], 'verse': i['verse']})
+
+    return result, result_count

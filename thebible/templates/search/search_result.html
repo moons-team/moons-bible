@@ -4,24 +4,46 @@
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'thebible/css/read/thebible_read.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'thebible/css/search_bar.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'thebible/css/search/search_result.css' %}">
 {% endblock head %}
 
 {% block content %}
 {% include "top_menu_bar.html" %}
 
-<div class="verseion_title">"{{ request.POST.search_version }}"에서 키워드 "{{ request.POST.keyword }}"의 검색결과입니다!</div>
-{% for verse in search_result %}
-    <ul class="search_verse">
-        <li>{{ verse.verse_num }}</li>
-        <li>{{ verse.verse }}</li>
-    </ul>
-{% endfor %}
-
+<div class="search_result">
+    <div class="verseion_title"><span class="point">"{{ request.POST.search_version }}"</span>에서 키워드 <span class="point" id="keyword">"{{ request.POST.keyword }}"</span>에 관련된 검색결과 <span class="point">"{{ result_count }}"</span>개의 내용입니다!</div>
+    <div class="search_result_content" id="search_result_content">
+        {% for titles in search_result.items %}
+            <ul>
+                <li class="search_title">{{ titles.0 }}</li>
+                <ol>
+                    {% for chapters in titles.1.items %}
+                        <ul>
+                            <li class="search_chapter">{{ chapters.0 }}장</li>
+                            <ol>
+                                {% for verse in chapters.1 %}
+                                    <ul class="search_verse">
+                                        <li>{{ verse.verse_num }}</li>
+                                        <li>
+                                            <div class="search_verse_div">{{ verse.verse }}</div>
+                                        </li>
+                                    </ul>
+                                {% endfor %}
+                            </ol>
+                        </ul>
+                    {% endfor %}
+                </ol>
+            </ul>
+            <hr>
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock content %}
 
 {% block js %}
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
     <script type="text/javascript" src="{% static 'thebible/js/read/thebible_read.js' %}"></script>
+    <script type="text/javascript" src="{% static 'thebible/js/search/search_result.js' %}"></script>
     <script src="{% static 'thebible/js/search_bar.js' %}"></script>
 {% endblock js %}

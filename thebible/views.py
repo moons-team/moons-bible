@@ -101,9 +101,10 @@ class SearchReadView(TopMenuDefault):
         search_version = self.request.POST.get("search_version", "개역한글") # 검색 버전
 
         # 검색 펑션 호출
-        search_result = ReadSearch(search_version, keyword)
+        search_result, result_count = ReadSearch(search_version, keyword)
         # 검색 결과
         context['search_result'] = search_result
+        context['result_count'] = result_count
 
         return render(request, 'search/search_result.html',context=context)
     
