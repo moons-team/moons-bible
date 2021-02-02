@@ -42,5 +42,5 @@ class UserLikeVerses(models.Model):
     # 저장시간
     save_time = models.DateTimeField(auto_now_add=True, verbose_name="저장 시간")
 
-    def __unicode__(self):
-        return "유저%s가 좋아하는 성구는 %s" % (self.user_key, self.verse_key)
+    def __str__(self):
+        return '유저:{} ---------------- like: "{}"'.format(self.user, self.verse)

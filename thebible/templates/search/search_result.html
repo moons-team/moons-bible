@@ -8,10 +8,20 @@
 
 {% block content %}
 {% include "top_menu_bar.html" %}
-<h1>나는 결과</h1>{{ search_result }}
+
+<div class="verseion_title">"{{ request.POST.search_version }}"에서 키워드 "{{ request.POST.keyword }}"의 검색결과입니다!</div>
+{% for verse in search_result %}
+    <ul class="search_verse">
+        <li>{{ verse.verse_num }}</li>
+        <li>{{ verse.verse }}</li>
+    </ul>
+{% endfor %}
+
+
 {% endblock content %}
 
 {% block js %}
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
     <script type="text/javascript" src="{% static 'thebible/js/read/thebible_read.js' %}"></script>
+    <script src="{% static 'thebible/js/search_bar.js' %}"></script>
 {% endblock js %}
