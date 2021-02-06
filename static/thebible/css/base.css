@@ -78,6 +78,7 @@ a{
 
 .menus{
     padding: 0;
+    height: 700px;
     margin-top: 30px;
 }
 
@@ -139,10 +140,10 @@ a{
 }
 
 .left_menu_bgcolor .left_menu .login_button{
-    width: 200px;
+    width: 80%;
     height: 40px;
     border: 1px solid white;
-    margin: 190% auto 15px auto;
+    margin: 0 auto 20px auto;
     border-radius: 50px;
     line-height: 40px;
     color: white;
@@ -156,10 +157,10 @@ a{
 }
 
 .left_menu_bgcolor .left_menu .signup_button{
-    width: 200px;
+    width: 80%;
     height: 40px;
     border: 1px solid white;
-    margin: 0px auto;
+    margin: 0 auto 10% auto;
     border-radius: 50px;
     line-height: 40px;
     color: white;

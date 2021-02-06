@@ -84,18 +84,8 @@ class thebible_read(TopMenuDefault):
         
         return context
 
-# 검색 뷰
-class SearchReadView(TopMenuDefault):
-
-    template_name = 'search/search_main.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(SearchReadView, self).get_context_data(**kwargs)
-
-        return context
-
     def post(self, request, **kwargs):
-        context = super(SearchReadView, self).get_context_data(**kwargs)
+        context = super(thebible_read, self).get_context_data(**kwargs)
 
         keyword = self.request.POST.get("keyword", "하나님") # 검색키워드
         search_version = self.request.POST.get("search_version", "개역한글") # 검색 버전
@@ -106,5 +96,15 @@ class SearchReadView(TopMenuDefault):
         context['search_result'] = search_result
         context['result_count'] = result_count
 
-        return render(request, 'search/search_result.html',context=context)
+        return render(request, 'read/thebible_read_search_result.html',context=context)
+
+# 검색 뷰
+class SearchReadView(TopMenuDefault):
+
+    template_name = 'search/search_main.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(SearchReadView, self).get_context_data(**kwargs)
+
+        return context
     

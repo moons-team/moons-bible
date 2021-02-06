@@ -36,30 +36,38 @@
                             <img src="{% static 'thebible/img/icon/home_icon.png' %}">
                         </div>
                         <div class="span">
-                            <span>홈</span>
+                            <span>홈 - <span style="color: rgb(255, 117, 117);">제작중...</span></span>
                         </div>
                     </li>
                 
                 <a href="{% url 'bible:read' %}">
                     <li class="li">
                         <div class="img">
-                            <img src="{% static 'thebible/img/icon/read_icon.png' %}">
+                            <img src="{% static 'thebible/img/icon/read_icon.png' %}" style="height: 22px;">
                         </div>
                         <div class="span">
-                            <span>성경 읽기</span>
+                            <span>성경 읽기 - <span style="color: rgb(255, 241, 115);">Beta</span></span>
                         </div>
                     </li>
                 </a>
 
                     <li class="li" onclick="alert_on()">
                         <div class="img">
-                            <img src="{% static 'thebible/img/icon/read_icon.png' %}">
+                            <img src="{% static 'thebible/img/icon/search_icon_menu.png' %}" style="height: 27px;">
                         </div>
                         <div class="span">
-                            <span>성경 키워드 검색</span>
+                            <span>성경 키워드 분석 - <span style="color: rgb(255, 117, 117);">제작중...</span></span>
                         </div>
                     </li>
                     
+                    <li class="li" onclick="alert_on()">
+                        <div class="img">
+                            <img src="{% static 'thebible/img/icon/report_icon.png' %}" style="height: 27px;">
+                        </div>
+                        <div class="span">
+                            <span>성경 통계 지표 - <span style="color: rgb(255, 117, 117);">제작중...</span></span>
+                        </div>
+                    </li>
             </ul>
             {% if user.is_authenticated %}
                 <a href="{% url 'user:logout' %}?next_path={{ request.get_full_path }}"><div class="login_button">로그아웃</div></a>
