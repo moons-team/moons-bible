@@ -5,7 +5,7 @@
     // 페이스북api에 연결 초기 설정
     window.fbAsyncInit = function() {
         FB.init({
-            appId      : '136271184910381',
+            appId      : '225389129329152',
             cookie     : true,                     // 서버가 세션에 액세스할 수 있도록 쿠키를 사용합니다.
             xfbml      : true,                     // 이 웹 페이지에서 소셜 플러그인을 구문 분석합니다.
             version    : 'v9.0'           // 이 호출에는 Graph API 버전을 사용하십시오.
@@ -15,10 +15,31 @@
         });
     };
 
-    // 사용자가 로그인 버튼을 완료후 상태 체크 및 엑세스토큰 발급!
-    function statusChangeCallback(response) {  
-        console.log('statusChangeCallback');
-        console.log(response);                   
+    // // 사용자가 로그인 버튼을 완료후 상태 체크 및 엑세스토큰 발급!
+    // function statusChangeCallback(response) {  
+    //     console.log('statusChangeCallback');
+    //     console.log(response);                   
+    //     if (response.status === 'connected') {   
+    //         document.getElementById('status').innerHTML += '액세스 토큰:' + response.authResponse.accessToken + "<br>";
+    //         document.getElementById('status').innerHTML += '유저 아이디:' + response.authResponse.userID + "<br>";
+    //         console.log('accessToken: ' + response.authResponse.accessToken);
+    //         console.log('expiresIn: ' + response.authResponse.expiresIn);
+    //         console.log('reauthorize_required_in: ' + response.authResponse.reauthorize_required_in);
+    //         console.log('signedRequest: ' + response.authResponse.signedRequest);
+    //         console.log('userID: ' + response.authResponse.userID);
+    //         FaceBookAPI(); 
+    //     }
+    // }
+
+    // // 로그인 버튼 클릭시 호출 됩니다.
+    // function checkLoginState() {
+    //     FB.getLoginStatus(function(response) {
+    //         statusChangeCallback(response);
+    //     });
+    // }
+
+    function FaceBookLogin(){
+        FB.login(function(response) {
         if (response.status === 'connected') {   
             document.getElementById('status').innerHTML += '액세스 토큰:' + response.authResponse.accessToken + "<br>";
             document.getElementById('status').innerHTML += '유저 아이디:' + response.authResponse.userID + "<br>";
@@ -29,14 +50,9 @@
             console.log('userID: ' + response.authResponse.userID);
             FaceBookAPI(); 
         }
+    }, {scope: 'public_profile,email'});
     }
 
-    // 로그인 버튼 클릭시 호출 됩니다.
-    function checkLoginState() {
-        FB.getLoginStatus(function(response) {
-            statusChangeCallback(response);
-        });
-    }
 
     // 페이스북 API
     function FaceBookAPI() {
@@ -52,7 +68,7 @@
 
 </script>
 <!-- 버튼 부분 -->
-<div class="fb-login-button" data-onlogin="checkLoginState()" data-onlogout="FaceBookLogOut()" data-width="300" data-size="large" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="true" data-use-continue-as="true"></div>
-
+<!-- <div class="fb-login-button" data-onlogin="checkLoginState()" data-onlogout="FaceBookLogOut()" data-width="300" data-size="large" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="true" data-use-continue-as="true"></div> -->
+<div onclick="FaceBookLogin()">버튼</div>
 <!-- 결과 텍스트 -->
 <div id="status" style="width: 100%;"></div>
