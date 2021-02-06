@@ -1,7 +1,7 @@
 {% load static %}
 <div class="search_version">
     <div id="fil-click" class="span" onclick="select(4)">
-        <div id="fil-click" name="version_name" class="search_version_title">개역한글</div>
+        <div id="fil-click" name="version_name" class="search_version_title">{{ now_version }}</div>
         <img src="{% static 'thebible/img/sub/select.png' %}" class="select_img" id="fil-click">
     </div>
     <div class="select-list none">
@@ -13,7 +13,7 @@
 <div class="search_div">
     <form action="{% url 'bible:read' %}" method="POST">
         {% csrf_token %}
-        <input type="text" value="개역한글" name="search_version">
+        <input type="text" value="{{ now_version }}" name="search_version">
         {{ read_search_input.keyword }}
         <input class="search_button" type="submit" value="">
         <div class="img"><img src="{% static 'thebible/img/icon/search_icon.png' %}"></div>

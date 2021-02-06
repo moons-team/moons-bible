@@ -44,6 +44,9 @@ class TopMenuDefault(TemplateView):
         context["version_one_title"] = BibleTitles.objects.get(title_num=para_list['title'], BibleVersion__version=para_list['vs_one']) # 버전1의 제목
         context["version_two_title"] = BibleTitles.objects.get(title_num=para_list['title'], BibleVersion__version=para_list['vs_two']) # 버전2의 제목
 
+        context['now_version'] = "개역한글" # 현재 검색 버전
+        context["search_version_language_subchapter"] = "장" # 검색된 버전 언어로 인한 ?장 혹은 ?章
+
         return context
 
 # 성경읽기 페이지
@@ -62,15 +65,8 @@ class thebible_read(TopMenuDefault):
         context["version_one_content"] = version_one_content # 버전1의 내용
         context["version_two_content"] = version_two_content # 버전2의 내용
 
-        # 중국어인지 한국어인지 분별
-        version_one_language_title = '장'
-        version_two_language_title = '장'
-        if context['para_list']['vs_one'] == 5 or context['para_list']['vs_one'] == 6:
-            version_one_language_title = '章'
-        if context['para_list']['vs_two'] == 5 or context['para_list']['vs_two'] == 6:
-            version_two_language_title = '章'
-        context["version_one_language_title"] = version_one_language_title # 버전1의 장
-        context["version_two_language_title"] = version_two_language_title # 버전2의 장
+        context["version_one_language_title"] = chapter_subname_language(context["version_one"]) # 버전1의 ?장 혹은 ?章
+        context["version_two_language_title"] = chapter_subname_language(context["version_two"]) # 버전2의 ?장 혹은 ?章
         
         # 유저 좋아요
         current_user = self.request.user
@@ -95,6 +91,9 @@ class thebible_read(TopMenuDefault):
         # 검색 결과
         context['search_result'] = search_result
         context['result_count'] = result_count
+
+        context['now_version'] = search_version # 현재 검색 버전
+        context["search_version_language_subchapter"] = chapter_subname_language(search_version) # 검색된 버전 언어 분별
 
         return render(request, 'read/thebible_read_search_result.html',context=context)
 

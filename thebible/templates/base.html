@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moons bible</title>
+    {% block title %}
+        <title>Moons bible</title>
+    {% endblock title %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'thebible/css/base.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'thebible/css/alert/one_button_window.css' %}">
     {% block head %}
     {% endblock head %}
+    <link href="{% static 'thebible/img/favicon.ico' %}" rel="shortcut icon" type="image/x-icon">
+    <link href="{% static 'thebible/img/favicon.ico' %}" rel="apple-touch-icon">
 </head>
 
 <body>
@@ -85,8 +89,6 @@
 </div>
 {% block js %}{% endblock js %}
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="{% static 'thebible/js/base.js' %}"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 </html>

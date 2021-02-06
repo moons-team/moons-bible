@@ -52,3 +52,13 @@ def ReadSearch(search_version, keyword):
                 result[i['BibleChapter__BibleTitle__title']][i['BibleChapter__chapter_num']].append({'verse_num': i['verse_num'], 'verse': i['verse']})
 
     return result, result_count
+
+# 중국어인지 한국어인지 분별 (버전명)
+def chapter_subname_language(version_name):
+    if langid.classify(version_name)[0] == 'ko':
+        chapter_subname = '장'
+    elif langid.classify(version_name)[0] == 'zh':
+        chapter_subname = '章'
+    else:
+        chapter_subname = '장'
+    return chapter_subname
