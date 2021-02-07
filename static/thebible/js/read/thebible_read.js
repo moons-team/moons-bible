@@ -1,3 +1,17 @@
+// 좌우 정렬
+var lefts = document.getElementById('left').getElementsByClassName('text')
+var rights = document.getElementById('right').getElementsByClassName('text')
+if(lefts.length <= rights.length){var for_count = rights.length}
+else{var for_count = lefts.length}
+for(i = 0, len = for_count; i < len; i++){
+    if(Number(lefts[i].offsetHeight) >= Number(rights[i].offsetHeight)){
+        rights[i].style.height = String(lefts[i].offsetHeight) + "px"
+    }
+    else{
+        lefts[i].style.height = String(rights[i].offsetHeight) + "px"
+    }
+}
+
 // 필터기능
 function select(num) {
     var selectList = document.getElementsByClassName("select-list");
@@ -77,4 +91,3 @@ function like(elem, csrfmiddlewaretoken) {
         }
     ApiLike(is_active, elem, csrfmiddlewaretoken)
     }
-    

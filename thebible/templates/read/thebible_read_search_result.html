@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load SearchResult %}
 
 {% block title %}
 <title>성경 검색</title>
@@ -8,22 +9,32 @@
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'thebible/css/read/thebible_read.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'thebible/css/search_bar.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'thebible/css/search/search_result.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'thebible/css/read/thebible_read_search_result.css' %}">
 {% endblock head %}
 
 {% block content %}
 {% include "top_menu_bar.html" %}
-
+<div class="left_sub_menu">
+    <div style="margin-top: 50px;"></div>
+    {% for titles in search_result.items %}
+        <a href="#{{ titles.0 }}">
+            <div style="width: 90%; padding-left: 10%; font-size: 20px; font-weight: 600; margin-top: 20px; cursor: pointer;">
+                {{ titles.0 }} - <span style="color: gray;">({{ titles.1|lenth }})</span>
+            </div>
+        </a>
+    {% endfor %}
+</div>
 <div class="search_result">
     <div class="verseion_title">성경버전 <span class="point">"{{ request.POST.search_version }}"</span>에서 키워드 <span class="point" id="keyword">"{{ request.POST.keyword }}"</span>에 관련된 검색결과 <span class="point">"{{ result_count }}"</span>개의 내용입니다!</div>
     <div class="search_result_content" id="search_result_content">
         {% for titles in search_result.items %}
             <ul>
-                <li class="search_title">{{ titles.0 }}</li>
+                <a name='{{ titles.0 }}' style="position: relative; top: -10px;"></a>
+                    <li class="search_title">{{ titles.0 }}</li>
                 <ol>
                     {% for chapters in titles.1.items %}
                         <ul>
-                            <li class="search_chapter">{{ chapters.0 }}{{ search_version_language_subchapter }}</li>
+                                <li class="search_chapter">{{ chapters.0 }}{{ search_version_language_subchapter }}</li>
                             <ol>
                                 {% for verse in chapters.1 %}
                                     <ul class="search_verse">
@@ -48,6 +59,6 @@
 {% block js %}
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
     <script type="text/javascript" src="{% static 'thebible/js/read/thebible_read.js' %}"></script>
-    <script type="text/javascript" src="{% static 'thebible/js/search/search_result.js' %}"></script>
+    <script type="text/javascript" src="{% static 'thebible/js/read/thebible_read_search_result.js' %}"></script>
     <script src="{% static 'thebible/js/search_bar.js' %}"></script>
 {% endblock js %}

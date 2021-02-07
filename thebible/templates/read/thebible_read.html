@@ -15,8 +15,10 @@
 <!-- 내용 -->
 <div class="content">
     <!-- 왼쪽 내용 -->
-    <div class="left">
-        <h1>{{ version_one_title }} {{ para_list.chapter }}{{ version_one_language_title }}</h1>
+    <div class="left" id="left">
+        <div style="height: 40px;">
+            <h1>{{ version_one_title }} {{ para_list.chapter }}{{ version_one_language_title }}</h1>
+        </div>
         {% for content in version_one_content %}
         <p>
             <span>{{ content.verse_num }}</span>
@@ -25,8 +27,10 @@
         {% endfor %}
     </div>
     <!-- 오른쪽 내용 -->
-    <div class="right">
-        <h1>{{ version_two_title }} {{ para_list.chapter }}{{ version_two_language_title }}</h1>
+    <div class="right" id="right">
+        <div style="height: 40px;">
+            <h1>{{ version_two_title }} {{ para_list.chapter }}{{ version_two_language_title }}</h1>
+        </div>
         {% for content in version_two_content %}
         <p>
             <span>{{ content.verse_num }}</span>
