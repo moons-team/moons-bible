@@ -1,0 +1,68 @@
+
+.left_sub_menu{
+    position: relative;
+    width: 13%;
+    height: 90%;
+    float: left;
+    box-shadow: rgb(168, 168, 168) 1px 0px 5px;
+    overflow: auto;
+    z-index: -1;
+    padding-bottom: 2%;
+}
+
+
+.search_result{
+    position: relative;
+    overflow: auto;
+    height: 93%;
+    width: 81%;
+    padding: 0 3% 0 3%;
+    z-index: -2;
+}
+
+.search_result .verseion_title{
+    width: 100%;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 50px;
+}
+
+.search_result .verseion_title .point{
+    color: #e27917;
+    font-size: 30px;
+}
+
+.search_result .search_result_content{
+    width: 100%;
+    margin-top: 20px;
+}
+
+.search_result ul{
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 15px;
+    font-size: 19px;
+}
+
+.search_result .search_verse li:nth-child(1){
+    float: left;
+    font-weight: bold;
+}
+
+.search_result .search_verse .search_verse_div{
+    margin-left: 35px;
+}
+
+.search_result .search_title{
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.search_result .search_chapter{
+    font-size: 21px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}

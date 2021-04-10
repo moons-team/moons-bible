@@ -103,3 +103,11 @@ class KeywordsInfo(models.Model):
 
     def __str__(self):
         return self.keyword
+
+# # 추천 키워드
+# class RecommendKeywords(models.Model):
+#     keyword = models.CharField(max_length=50, blank=True, null=True, verbose_name="키워드")
+#     keyword_count = models.IntegerField(default=0, verbose_name="키워드 개수")
+
+#     BibleVersion = models.ForeignKey(BibleVersions, on_delete=models.CASCADE)
+

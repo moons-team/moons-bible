@@ -107,3 +107,21 @@ class SearchReadView(TopMenuDefault):
 
         return context
     
+
+import random
+
+def test(request):
+    context = {}
+
+    bible = BibleVerses.objects.filter(userlikeverses__user_id=6, BibleChapter__BibleTitle__BibleVersion__version='1', BibleChapter__BibleTitle__title='잠언', BibleChapter__chapter_num__gte=9).values('BibleChapter__BibleTitle__title', 'BibleChapter__chapter_num', 'verse_num', 'verse')
+    new_bible = list()
+    for i in bible:
+        new = {
+            'title': f"{i['BibleChapter__BibleTitle__title']} {i['BibleChapter__chapter_num']}:{i['verse_num']}",
+            'text': i['verse'],
+        }
+        new_bible.append(new)
+
+    random.shuffle(new_bible)
+    context['test'] = new_bible
+    return render(request, 'test.html', context=context)

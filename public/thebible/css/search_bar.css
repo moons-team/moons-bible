@@ -1,0 +1,109 @@
+.search_version{
+    width: 20%;
+    height: 40px;
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #243340;
+    border-radius: 20px 5px 5px 20px;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    position: relative;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.search_div{
+    width: 100%;
+    height: 40px;
+}
+
+.search_div .img{
+    position: absolute;
+    z-index: 5;
+    top: 25px;
+    left: 93.8%;
+    cursor: pointer;
+}
+.search_div .img img{
+    width: 20px;
+}
+
+.search_input{
+    width: 30%;
+    height: 34px;
+    border: 2px solid #243340;
+    z-index: 2;
+    position: absolute;
+    left: 60.8%;
+    border-radius: 5px;
+    padding-left: 1%;
+    font-size: 18px;
+    outline: none;
+    line-height: 34px;
+}
+
+.search_button{
+    position: absolute;
+    width: 5%;
+    height: 40px;
+    background-color: #243340;
+    border-left: none;
+    border-radius: 0px 20px 20px 0px;
+    font-size: 30px;
+    left: 92%;
+    z-index: 1;
+    cursor: pointer;
+    outline: none;
+}
+
+.search_version .span{
+    width: 80%;
+    float: left;
+    text-align: center;
+    margin-left: 10%;
+}
+
+.search_version img{
+    width: 10%;
+    position: relative;
+    top: -3px;
+    right: -48%;
+}
+
+.search_version .select-list{
+    border-radius: 20px 5px 20px 20px;
+    box-shadow: 0 9px 18px 6px rgba(170, 170, 170, 0.5);
+    background-color: #243340;
+    max-height: 500px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: rgba(255, 255, 255, 0.9);
+    z-index: -10;
+    position: absolute;
+    overflow-y: auto;
+    top: 0px;
+    width: 100%;
+    left: 0px;
+    padding-top: 40px;
+}
+
+.search_version .select{
+    width: 100%;
+    height: 40px;
+    cursor: pointer;
+    padding: 5px 0px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 40px;
+    color: white;
+  }
+
+.search_version_title{
+    margin: 0;
+    padding: 0;
+    height: 0;
+}

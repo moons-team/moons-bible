@@ -36,11 +36,11 @@ class UserProfile(models.Model):
 # 유저가 좋아하는 성구
 class UserLikeVerses(models.Model):
     # 유저
-    user = models.ForeignKey(User_db, on_delete=models.CASCADE)
+    user = models.ForeignKey(User_db, on_delete=models.CASCADE, related_name='userlikeverses')
     # 성구
-    verse = models.ForeignKey(BibleVerses, on_delete=models.CASCADE)
+    verse = models.ForeignKey(BibleVerses, on_delete=models.CASCADE, related_name='userlikeverses')
     # 저장시간
     save_time = models.DateTimeField(auto_now_add=True, verbose_name="저장 시간")
 
     def __str__(self):
-        return '유저:{} ---------------- like: "{}"'.format(self.user, self.verse)
+        return '{}유저:{} ---------------- like: "{}"'.format(self.user.id, self.user, self.verse)
